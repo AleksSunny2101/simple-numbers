@@ -1,0 +1,22 @@
+def sieve_of_eratosthenes(limit):
+    # Create a boolean array "prime[0..limit]" and initialize all entries to True
+    prime = [True] * (limit + 1)
+    p = 2
+    while (p * p <= limit):
+        # If prime[p] is not changed, then it is a prime
+        if (prime[p] == True):
+            # Update all multiples of p to False
+            for i in range(p * p, limit + 1, p):
+                prime[i] = False
+        p += 1
+    # Return all prime numbers <= limit
+    prime_numbers = [p for p in range(2, limit + 1) if prime[p]]
+    return prime_numbers
+
+# Calculate prime numbers up to 10000
+limit = 10000
+prime_numbers = sieve_of_eratosthenes(limit)
+
+# Print the prime numbers
+print("Prime numbers up to", limit, "are:")
+print(prime_numbers)
